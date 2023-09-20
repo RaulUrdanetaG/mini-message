@@ -12,4 +12,13 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const message = await Message.create(req.body);
+    res.json(message);
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+});
+
 module.exports = router;

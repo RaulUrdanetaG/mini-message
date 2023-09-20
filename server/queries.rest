@@ -1,1 +1,12 @@
 GET http://localhost:8080/
+
+###
+
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "user": "alo1",
+  "message": "This is the first post test message",
+  "date": "2023-09-20T15:32:00.000Z"
+}
