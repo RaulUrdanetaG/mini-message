@@ -3,19 +3,25 @@
     <div class="chat-header flex gap-2 p-3 rounded-t-lg items-center">
       <img class="group-img" src="assets/pfp.jpg" alt="pfp image" />
       <div class="flex flex-col">
-        <h6 class="text-2xl font-bold">mini messages group</h6>
-        <p>{{ usersText }}</p>
+        <h6 class="text-lg font-bold">mini messages group</h6>
+        <p class="users">{{ usersText }}</p>
       </div>
     </div>
     <div>
-      <div class="chat-messages p-2">
+      <div #container class="chat-messages p-2 flex flex-col relative">
         <div *ngFor="let message of messagesRes?.messages">
-          <h2 class="text-center">{{ message._id }}</h2>
-          <div *ngFor="let user of message.users; let i = index">
-            <h3>{{ message.users[i] }}</h3>
+          <div class="flex justify-center">
+            <h2 class="date p-2 rounded-md text-xs">{{ message._id }}</h2>
+          </div>
+          <div
+            *ngFor="let user of message.dateMessages; let i = index"
+            class="text-sm"
+          >
+            <div><i class="fa-solid fa-user"></i></div>
+            <h3>{{ user.user }}</h3>
             <div>
-              <h3>{{ message.messages[i] }}</h3>
-              <h3>{{ message.times[i] }}</h3>
+              <h3>{{ user.message }}</h3>
+              <h3 class="time">{{ user.time | date : "hh:mm a" }}</h3>
             </div>
           </div>
         </div>

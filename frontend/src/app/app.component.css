@@ -6,9 +6,14 @@
   background-color: #202c33;
 }
 
+.users {
+  color: #8696a0;
+}
+
 .chat-messages {
   max-height: 624px;
   overflow: auto;
+  color: #e9edef;
 }
 
 .group-img {
@@ -23,6 +28,15 @@
   background: url("../assets/wa-bg.jpg") center/cover no-repeat;
 }
 
+.date {
+  background-color: #182229;
+  color: #8696a0;
+}
+
+.time {
+  color: #ffffff99;
+}
+
 input {
   background-color: #2a3942;
   border-radius: 10px;
@@ -35,4 +49,13 @@ input {
 .send-btn {
   background-color: #04a684;
   border-radius: 50%;
+}
+
+.chat-messages::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: #323a3f;
 }

@@ -7,16 +7,21 @@ export interface Message {
 
 export interface Messages {
   _id: string;
-  users: string[];
-  messages: string[];
-  times: string[];
+  user: string;
+  message: string;
+  time: Date;
 }
 
 export interface User {
   _id: string;
 }
 
+export interface Dates {
+  _id: string;
+  dateMessages: Messages[];
+}
+
 export interface UsersAndMessages {
-  messages: Messages[];
+  messages: Dates[];
   users: User[];
 }

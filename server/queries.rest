@@ -6,7 +6,8 @@ POST http://localhost:8080/
 Content-Type: application/json
 
 {
-  "user": "alo2",
-  "message": "This is the second post test message",
-  "date": "2023-09-20T16:15:00.000Z"
+  "user": "test3",
+  "message": "test3",
+  "date": "21/09/2023",
+  "time": "2023-09-21T03:59:31.707+00:00"
 }

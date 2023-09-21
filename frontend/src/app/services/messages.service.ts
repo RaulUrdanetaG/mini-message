@@ -11,8 +11,8 @@ export class MessagesService {
 
   constructor(private http: HttpClient) {}
 
-  getMessages(): Observable<UsersAndMessages> {
-    return this.http.get<UsersAndMessages>(this.baseURL);
+  getMessages() {
+    return firstValueFrom(this.http.get<UsersAndMessages>(this.baseURL));
   }
 
   postMessage(Message: Message) {

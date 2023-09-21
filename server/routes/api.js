@@ -8,9 +8,22 @@ router.get("/", async (req, res) => {
       {
         $group: {
           _id: "$date",
-          users: { $push: "$user" },
-          messages: { $push: "$message" },
-          times: { $push: "$time" },
+          dateMessages: { $addToSet: "$$ROOT" },
+        },
+      },
+      {
+        $unwind: "$dateMessages",
+      },
+      {
+        $sort: {
+          _id: 1,
+          "dateMessages.time": 1,
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          dateMessages: { $push: "$dateMessages" },
         },
       },
       {

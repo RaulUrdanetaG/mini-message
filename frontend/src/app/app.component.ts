@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MessagesService } from './services/messages.service';
 import {
   Message,
@@ -8,6 +14,7 @@ import {
 } from './interfaces/message';
 import { FormControl, FormGroup } from '@angular/forms';
 import { format } from 'date-fns';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +22,8 @@ import { format } from 'date-fns';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  @ViewChild('container') container!: ElementRef;
+
   public messagesRes: UsersAndMessages | undefined;
   users: any[] = [];
   usersText: string = '';
@@ -33,9 +42,16 @@ export class AppComponent implements OnInit {
     this.getMessages();
   }
 
-  getMessages() {
-    this._messageService.getMessages().subscribe((res) => {
-      this.messagesRes = res;
+  scrollToBottom() {
+    const containerElement = this.container.nativeElement;
+    containerElement.scrollTop = containerElement.scrollHeight;
+  }
+
+  async getMessages() {
+    try {
+      const response = await this._messageService.getMessages();
+
+      this.messagesRes = response;
 
       this.users = [];
       this.messagesRes.users.forEach((user) => {
@@ -43,20 +59,26 @@ export class AppComponent implements OnInit {
       });
 
       this.usersText = this.users.join(', ');
-      console.log(res);
-    });
+
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 0);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async onSubmit() {
     if (this.form.valid) {
       const newDate = new Date();
-      this.form.get('date')?.setValue(format(newDate, 'dd/MM/yyyy'));
-      this.form.get('time')?.setValue(format(newDate, 'hh:mm b'));
+      this.form.get('date')?.setValue(format(newDate, 'yyyy-MM-dd'));
+      this.form.get('time')?.setValue(newDate);
       console.log(this.form.value);
       const res = await this._messageService.postMessage(this.form.value);
       this.getMessages();
     } else {
       console.log('invalid form');
     }
+    this.scrollToBottom();
   }
 }
