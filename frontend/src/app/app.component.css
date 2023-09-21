@@ -6,7 +6,12 @@
   background-color: #202c33;
 }
 
-.group-img{
+.chat-messages {
+  max-height: 624px;
+  overflow: auto;
+}
+
+.group-img {
   border-radius: 50%;
   height: 50px;
 }

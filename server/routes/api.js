@@ -13,12 +13,22 @@ router.get("/", async (req, res) => {
           times: { $push: "$time" },
         },
       },
+      {
+        $sort: {
+          _id: 1,
+        },
+      },
     ]);
 
     const users = await Message.aggregate([
       {
         $group: {
           _id: "$user",
+        },
+      },
+      {
+        $sort: {
+          _id: 1,
         },
       },
     ]);
