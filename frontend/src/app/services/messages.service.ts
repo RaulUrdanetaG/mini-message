@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Message, Messages, UsersAndMessages } from '../interfaces/message';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Message, UsersAndMessages } from '../interfaces/message';
+import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessagesService {
-  baseURL: string = 'http://localhost:8080';
+  baseURL: string = 'https://mini-message-backend.onrender.com/';
 
   constructor(private http: HttpClient) {}
 

@@ -11,8 +11,8 @@ const options = {
 mongoose
   .connect(process.env.MONGO_URI, options)
   .then(() => {
-    console.log("Conexión a MongoDB exitosa");
+    console.log("Succesful MongoDB connection");
   })
   .catch((error) => {
-    console.error("Error de conexión a MongoDB:", error);
+    console.error( "MongoDB connection error: ", error);
   });
