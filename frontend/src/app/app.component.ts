@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessagesService } from './services/messages.service';
 import { UsersAndMessages } from './interfaces/message';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -42,6 +37,7 @@ export class AppComponent implements OnInit {
 
   async getMessages() {
     try {
+      this.messagesRes = undefined;
       const response = await this._messageService.getMessages();
 
       this.messagesRes = response;
@@ -78,5 +74,9 @@ export class AppComponent implements OnInit {
       console.log('invalid form');
     }
     this.scrollToBottom();
+  }
+
+  isLoading() {
+    return this.messagesRes ? false : true;
   }
 }

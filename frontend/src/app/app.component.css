@@ -17,6 +17,10 @@
   color: #e9edef;
 }
 
+.chat-loading{
+  margin-bottom: 50%;
+}
+
 .group-img {
   border-radius: 50%;
   height: 50px;

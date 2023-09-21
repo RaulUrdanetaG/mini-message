@@ -8,26 +8,48 @@
       </div>
     </div>
     <div>
-      <div #container class="chat-messages p-2 flex flex-col relative">
-        <div *ngFor="let message of messagesRes?.messages">
-          <div class="flex justify-center">
-            <h2 class="date p-2 rounded-md text-xs">{{ message._id }}</h2>
-          </div>
-          <div
-            *ngFor="let user of message.dateMessages; let i = index"
-            class="text-sm flex gap-2 my-2"
-          >
-            <div><i class="fa-solid fa-user"></i></div>
-            <div class="message p-2 rounded-lg flex flex-col">
-              <h3 class="text-xs">{{ user.user }}</h3>
-              <div class="flex gap-2">
-                <h3>{{ user.message }}</h3>
-                <h3 class="time text-xs mt-3">{{ user.time | date : "hh:mm a" }}</h3>
+      <div
+        *ngIf="isLoading(); else elseBlock"
+        class="chat-loading flex items-center gap-3 align-middle justify-center overflow-hidden"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="48"
+          viewBox="0 -960 960 960"
+          width="48"
+          class="animate-spin"
+        >
+          <path
+            class="fill-black dark:fill-slate-50"
+            d="M480-80q-84 0-157-31t-127-85q-54-54-85-127T80-480q0-84 31-157t85-127q54-54 127-85t157-31q12 0 21 9t9 21q0 12-9 21t-21 9q-141 0-240.5 99.5T140-480q0 141 99.5 240.5T480-140q141 0 240.5-99.5T820-480q0-12 9-21t21-9q12 0 21 9t9 21q0 84-31 157t-85 127q-54 54-127 85T480-80Z"
+          />
+        </svg>
+      </div>
+
+      <ng-template #elseBlock>
+        <div #container class="chat-messages p-2 flex flex-col relative">
+          <div *ngFor="let message of messagesRes?.messages">
+            <div class="flex justify-center">
+              <h2 class="date p-2 rounded-md text-xs">{{ message._id }}</h2>
+            </div>
+            <div
+              *ngFor="let user of message.dateMessages; let i = index"
+              class="text-sm flex gap-2 my-2"
+            >
+              <div><i class="fa-solid fa-user"></i></div>
+              <div class="message p-2 rounded-lg flex flex-col">
+                <h3 class="text-xs">{{ user.user }}</h3>
+                <div class="flex gap-2">
+                  <h3>{{ user.message }}</h3>
+                  <h3 class="time text-xs mt-3">
+                    {{ user.time | date : "hh:mm a" }}
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </ng-template>
       <form
         [formGroup]="form"
         (ngSubmit)="onSubmit()"
