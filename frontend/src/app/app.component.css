@@ -1,0 +1,33 @@
+.bg {
+  background-color: #0c1317;
+}
+
+.chat-header {
+  background-color: #202c33;
+}
+
+.group-img{
+  border-radius: 50%;
+  height: 50px;
+}
+
+.chat {
+  width: 45vw;
+  height: 80vh;
+  background-color: #0b141a;
+  background: url("../assets/wa-bg.jpg") center/cover no-repeat;
+}
+
+input {
+  background-color: #2a3942;
+  border-radius: 10px;
+}
+
+.message-bar {
+  background-color: #202c33;
+}
+
+.send-btn {
+  background-color: #04a684;
+  border-radius: 50%;
+}
