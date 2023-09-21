@@ -7,6 +7,7 @@
 }
 
 .users {
+  overflow: hidden;
   color: #8696a0;
 }
 
@@ -37,8 +38,8 @@
   color: #ffffff99;
 }
 
-.message{
-  background-color: #202C33;
+.message {
+  background-color: #202c33;
 }
 
 input {
@@ -48,6 +49,7 @@ input {
 
 .message-bar {
   background-color: #202c33;
+  max-width: 100%;
 }
 
 .send-btn {
@@ -62,4 +64,16 @@ input {
 
 .chat-messages::-webkit-scrollbar-thumb {
   background-color: #323a3f;
+}
+
+@media (max-width: 960px){
+  .chat{
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-between;
+  }
+
+  .chat-messages{
+    max-height: 70vh;
+  }
 }

@@ -6,15 +6,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MessagesService } from './services/messages.service';
-import {
-  Message,
-  Messages,
-  User,
-  UsersAndMessages,
-} from './interfaces/message';
+import { UsersAndMessages } from './interfaces/message';
 import { FormControl, FormGroup } from '@angular/forms';
 import { format } from 'date-fns';
-import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -58,7 +52,11 @@ export class AppComponent implements OnInit {
         this.users.push(user._id);
       });
 
-      this.usersText = this.users.join(', ');
+      if (this.users.length > 8) {
+        this.usersText = this.users.slice(0, 8).join(', ') + ' ...';
+      } else {
+        this.usersText = this.users.join(', ');
+      }
 
       setTimeout(() => {
         this.scrollToBottom();
