@@ -15,13 +15,15 @@
           </div>
           <div
             *ngFor="let user of message.dateMessages; let i = index"
-            class="text-sm"
+            class="text-sm flex gap-2 my-2"
           >
             <div><i class="fa-solid fa-user"></i></div>
-            <h3>{{ user.user }}</h3>
-            <div>
-              <h3>{{ user.message }}</h3>
-              <h3 class="time">{{ user.time | date : "hh:mm a" }}</h3>
+            <div class="message p-2 rounded-lg flex flex-col">
+              <h3 class="text-xs">{{ user.user }}</h3>
+              <div class="flex gap-2">
+                <h3>{{ user.message }}</h3>
+                <h3 class="time text-xs mt-3">{{ user.time | date : "hh:mm a" }}</h3>
+              </div>
             </div>
           </div>
         </div>

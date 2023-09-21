@@ -37,6 +37,10 @@
   color: #ffffff99;
 }
 
+.message{
+  background-color: #202C33;
+}
+
 input {
   background-color: #2a3942;
   border-radius: 10px;

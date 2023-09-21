@@ -71,10 +71,11 @@ export class AppComponent implements OnInit {
   async onSubmit() {
     if (this.form.valid) {
       const newDate = new Date();
-      this.form.get('date')?.setValue(format(newDate, 'yyyy-MM-dd'));
+      this.form.get('date')?.setValue(format(newDate, 'dd/MM/yyyy'));
       this.form.get('time')?.setValue(newDate);
       console.log(this.form.value);
       const res = await this._messageService.postMessage(this.form.value);
+      this.form.reset();
       this.getMessages();
     } else {
       console.log('invalid form');
